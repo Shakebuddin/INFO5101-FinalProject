@@ -41,6 +41,7 @@ public class MainFrame extends javax.swing.JFrame {
         displayPanelBOT = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(750, 600));
 
         WelcomeLabel.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         WelcomeLabel.setText("Welcome, XYZ!");
@@ -167,7 +168,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addComponent(EmailLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(mainPanel)
-                .addGap(249, 249, 249))
+                .addGap(336, 336, 336))
         );
 
         pack();
