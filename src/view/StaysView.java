@@ -1,17 +1,24 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package view;
+
+import java.util.ArrayList;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import model.*;
 
 /**
  *
  * @author lenovo
  */
-public class StaysView extends javax.swing.JFrame {
-
+public class StaysView extends javax.swing.JPanel {
+    private Stays selectedStay;
+    private ArrayList<Stays> stays;
     /**
-     * Creates new form StaysView
+     * Creates new form StaysViewF
      */
     public StaysView() {
         initComponents();
@@ -28,25 +35,24 @@ public class StaysView extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         staysTable = new javax.swing.JTable();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        editButton = new javax.swing.JButton();
 
         staysTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Hotel", "Check In", "Check Out", "Due", "Feedback"
+                "ID", "Hotel", "Check In", "Check Out", "Due", "Feedback"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -58,70 +64,68 @@ public class StaysView extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(staysTable);
-        if (staysTable.getColumnModel().getColumnCount() > 0) {
-            staysTable.getColumnModel().getColumn(0).setResizable(false);
-            staysTable.getColumnModel().getColumn(1).setResizable(false);
-            staysTable.getColumnModel().getColumn(2).setResizable(false);
-            staysTable.getColumnModel().getColumn(3).setResizable(false);
-            staysTable.getColumnModel().getColumn(4).setResizable(false);
-        }
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
+        editButton.setText("Edit");
+        editButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 744, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(325, 325, 325)
+                .addComponent(editButton)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(78, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 516, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(editButton)
+                .addGap(54, 54, 54))
         );
-
-        pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(StaysView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(StaysView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(StaysView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(StaysView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
+        // TODO add your handling code here:
+        int selectedIndex = staysTable.getSelectedRow();
+        if (selectedIndex == -1) {
+            JOptionPane.showMessageDialog(this, "Please select a user to edit", "Cannot edit user", JOptionPane.PLAIN_MESSAGE);
+            return;
         }
-        //</editor-fold>
+        
+//        stays = Database.getAllStays();
+        selectedStay = stays.get(selectedIndex);
+        UpdateBooking ub = new UpdateBooking();
+        ub.hotelNameInput.setText(selectedStay.getHotelName());
+        ub.checkInInput.setText(selectedStay.getCheckInDate());
+        ub.checkOutInput.setText(selectedStay.getCheckOutDate());
+        ub.priceInput.setText(selectedStay.getPrice());
+        ub.feedbackInput.setText(selectedStay.getFeedback());
+        ub.guestEmailInput.setText(selectedStay.getGuestEmail());
+        ub.guestid = selectedStay.getGuestId();
+        
+        JFrame frame = new JFrame("Edit Booking");
+//        JPanel panel = new UpdateBooking();
+        JPanel panel = ub;
+        frame.add(panel);
+        frame.setSize(750, 600);
+        frame.setVisible(true);
+    }//GEN-LAST:event_editButtonActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new StaysView().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton editButton;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable staysTable;
+    public javax.swing.JTable staysTable;
     // End of variables declaration//GEN-END:variables
 }
