@@ -4,17 +4,53 @@
  */
 package view;
 
+import java.awt.CardLayout;
+import java.util.ArrayList;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+
+import model.*;
+import controller.*;
+
 /**
  *
  * @author lenovo
  */
 public class MainFrame extends javax.swing.JFrame {
-
+    
+//    flowControl fc = new flowControl();
+    LoginPage lp = new LoginPage();
+    
+    StaysView stayV = new StaysView();
+    DefaultTableModel globalModel = (DefaultTableModel) stayV.staysTable.getModel();
+    
+    MembershipView membershipV = new MembershipView();
+    DefaultTableModel globalModelMembership = (DefaultTableModel) membershipV.membershipTable.getModel();
+    
+    public ArrayList<Guest> globalArrayList = new ArrayList<>();
     /**
      * Creates new form MainFrame
      */
     public MainFrame() {
+        
+        String accessVariable = lp.fc.getAccess();
+//          String accessVariable = lp.access;
+        System.out.println("before variable " + accessVariable);
+        if(accessVariable.equals("GRANTED")){
         initComponents();
+        }
+        else{
+//        flowControl fc = new flowControl();
+        JFrame frame = new JFrame("Login");
+        JPanel panel = new LoginPage();
+        frame.add(panel);
+        frame.setSize(750, 600);
+        frame.setVisible(true);
+
+        MainFrame.this.dispose();
+        }
     }
 
     /**
@@ -26,7 +62,6 @@ public class MainFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        WelcomeLabel = new javax.swing.JLabel();
         logoutButton = new javax.swing.JButton();
         NameLabel = new javax.swing.JLabel();
         PhoneLabel = new javax.swing.JLabel();
@@ -39,14 +74,22 @@ public class MainFrame extends javax.swing.JFrame {
         MembershipsButton = new javax.swing.JButton();
         VouchersButton = new javax.swing.JButton();
         displayPanelBOT = new javax.swing.JPanel();
+        searchInput = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        searchButton = new javax.swing.JButton();
+        nameDataLabel = new javax.swing.JLabel();
+        phoneDataLabel = new javax.swing.JLabel();
+        emailDataLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(750, 600));
 
-        WelcomeLabel.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        WelcomeLabel.setText("Welcome, XYZ!");
-
         logoutButton.setText("Logout");
+        logoutButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutButtonActionPerformed(evt);
+            }
+        });
 
         NameLabel.setText("Name:");
 
@@ -63,8 +106,18 @@ public class MainFrame extends javax.swing.JFrame {
         buttonPanelTOP.setBackground(new java.awt.Color(255, 102, 102));
 
         ProfileButton.setText("Profile");
+        ProfileButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ProfileButtonActionPerformed(evt);
+            }
+        });
 
         StaysButton.setText("Stays");
+        StaysButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                StaysButtonActionPerformed(evt);
+            }
+        });
 
         MembershipsButton.setText("Memberships");
         MembershipsButton.addActionListener(new java.awt.event.ActionListener() {
@@ -89,7 +142,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addComponent(ProfileButton, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(81, 81, 81)
                 .addComponent(StaysButton, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 141, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(MembershipsButton)
                 .addGap(111, 111, 111)
                 .addComponent(VouchersButton, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -104,7 +157,7 @@ public class MainFrame extends javax.swing.JFrame {
                     .addComponent(StaysButton)
                     .addComponent(MembershipsButton)
                     .addComponent(VouchersButton))
-                .addContainerGap(11, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         mainPanel.setTopComponent(buttonPanelTOP);
@@ -115,22 +168,35 @@ public class MainFrame extends javax.swing.JFrame {
         displayPanelBOT.setLayout(displayPanelBOTLayout);
         displayPanelBOTLayout.setHorizontalGroup(
             displayPanelBOTLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 744, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         displayPanelBOTLayout.setVerticalGroup(
             displayPanelBOTLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 368, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
         mainPanel.setRightComponent(displayPanelBOT);
+
+        jLabel1.setText("Search Guest:");
+
+        searchButton.setText("Search");
+        searchButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(297, 297, 297)
-                .addComponent(WelcomeLabel)
+                .addGap(71, 71, 71)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(searchInput, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(searchButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(logoutButton)
                 .addContainerGap())
@@ -139,13 +205,21 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(NameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(nameDataLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(MembershipLabel)
                         .addGap(188, 188, 188))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(PhoneLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(EmailLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(PhoneLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(phoneDataLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(EmailLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(emailDataLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
@@ -156,19 +230,25 @@ public class MainFrame extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(WelcomeLabel)
-                    .addComponent(logoutButton))
+                    .addComponent(logoutButton)
+                    .addComponent(searchInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1)
+                    .addComponent(searchButton))
                 .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(NameLabel)
-                    .addComponent(MembershipLabel))
+                    .addComponent(MembershipLabel)
+                    .addComponent(nameDataLabel))
                 .addGap(31, 31, 31)
-                .addComponent(PhoneLabel)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(PhoneLabel)
+                    .addComponent(phoneDataLabel))
                 .addGap(18, 18, 18)
-                .addComponent(EmailLabel)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(EmailLabel)
+                    .addComponent(emailDataLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(mainPanel)
-                .addGap(336, 336, 336))
+                .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 427, Short.MAX_VALUE))
         );
 
         pack();
@@ -176,11 +256,126 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void MembershipsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MembershipsButtonActionPerformed
         // TODO add your handling code here:
+//        MembershipView membershipView = new MembershipView();
+        mainPanel.setBottomComponent(membershipV);
+        membershipV.repaint();
     }//GEN-LAST:event_MembershipsButtonActionPerformed
 
     private void VouchersButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VouchersButtonActionPerformed
         // TODO add your handling code here:
+        VoucherView voucherView = new VoucherView();
+        mainPanel.setBottomComponent(voucherView);
     }//GEN-LAST:event_VouchersButtonActionPerformed
+
+    private void ProfileButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProfileButtonActionPerformed
+        // TODO add your handling code here:
+        System.out.print("enter");
+        ProfileView profileView = new ProfileView();
+//        profileView.reset();
+        mainPanel.setBottomComponent(profileView);
+        profileView.setDetails(globalArrayList);
+//        profileView.removeAll();
+        profileView.repaint();
+    }//GEN-LAST:event_ProfileButtonActionPerformed
+
+    private void StaysButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StaysButtonActionPerformed
+        // TODO add your handling code here:
+//        StaysView staysView = new StaysView();
+        mainPanel.setBottomComponent(stayV);
+        stayV.repaint();
+    }//GEN-LAST:event_StaysButtonActionPerformed
+
+    private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButtonActionPerformed
+        // TODO add your handling code here:
+        System.out.println("LOGGED OUT");
+//        new MainFrame().setVisible(false);
+//        new LoginPage().setVisible(true);
+        JFrame frame = new JFrame("Login");
+        JPanel panel = new LoginPage();
+        frame.add(panel);
+        frame.setSize(750, 600);
+        frame.setVisible(true);
+
+        MainFrame.this.dispose();
+        
+        lp.fc.revokeAccess();
+    }//GEN-LAST:event_logoutButtonActionPerformed
+
+    private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
+        // TODO add your handling code here:
+        ArrayList<Guest> guestDetails = new ArrayList<>();
+        ArrayList<Stays> stayDetails = new ArrayList<> ();
+        ArrayList<Membership> membershipDetails = new ArrayList<> ();
+        String searchQuery;
+        searchQuery = searchInput.getText();
+        
+        guestDetails = Database.viewGuest(searchQuery);
+        globalArrayList.clear();
+        Guest guest = guestDetails.get(0);
+        globalArrayList.add(guest);
+        nameDataLabel.setText(guest.getFname());
+        emailDataLabel.setText(guest.getEmail());
+        phoneDataLabel.setText(guest.getPhone());
+        MainFrame.this.repaint();
+//        ProfileView pf = new ProfileView();
+//        pf.reset();
+        
+        stayDetails = Database.getStays(searchQuery);
+//        Stays stay = stayDetails.get(0);
+        try {
+//            this.users = DatabaseConnector.getAllusers();
+//            StaysView stayV = new StaysView();
+//            DefaultTableModel model = (DefaultTableModel) stayV.staysTable.getModel();
+            globalModel.setRowCount(0);
+            for (Stays s : stayDetails) {
+                Object[] row = new Object[6];
+                row[0] = s.getGuestId();
+//                System.out.println(s.getGuestId());
+//                row[0] = u;
+                row[1] = s.getHotelName();
+//                System.out.println(s.getHotelName());
+                row[2] = s.getCheckInDate();
+                row[3] = s.getCheckOutDate();
+                row[4] = s.getPrice();
+                row[5] = s.getFeedback();
+//                model.addRow(row);
+                globalModel.addRow(row);
+                System.out.println(globalModel);
+            }
+//            clearFields();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
+        
+//        Membership Details
+          membershipDetails = Database.getMembership(searchQuery);
+//        Stays stay = stayDetails.get(0);
+        try {
+//            this.users = DatabaseConnector.getAllusers();
+//            StaysView stayV = new StaysView();
+//            DefaultTableModel model = (DefaultTableModel) stayV.staysTable.getModel();
+            globalModelMembership.setRowCount(0);
+            for (Membership m : membershipDetails) {
+                Object[] row = new Object[6];
+                row[0] = m.getMembershipId();
+//                System.out.println(s.getGuestId());
+//                row[0] = u;
+//                System.out.println(s.getHotelName());
+                row[1] = m.getGuestEmail();
+                row[2] = m.getMembershipTier();
+                row[3] = m.getExpiry();
+                row[4] = m.getJoin();
+                row[5] = m.getType();
+//                row[5] = m.getFeedback();
+//                model.addRow(row);
+                globalModelMembership.addRow(row);
+                System.out.println(globalModelMembership);
+            }
+//            clearFields();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
+    }//GEN-LAST:event_searchButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -226,10 +421,15 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton ProfileButton;
     private javax.swing.JButton StaysButton;
     private javax.swing.JButton VouchersButton;
-    private javax.swing.JLabel WelcomeLabel;
     private javax.swing.JPanel buttonPanelTOP;
     private javax.swing.JPanel displayPanelBOT;
+    private javax.swing.JLabel emailDataLabel;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JButton logoutButton;
     private javax.swing.JSplitPane mainPanel;
+    private javax.swing.JLabel nameDataLabel;
+    private javax.swing.JLabel phoneDataLabel;
+    private javax.swing.JButton searchButton;
+    private javax.swing.JTextField searchInput;
     // End of variables declaration//GEN-END:variables
 }
