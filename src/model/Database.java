@@ -154,20 +154,20 @@ public class Database {
      *
      */
     
-    /*
-    public static void deleteUser(User u) {
-        String query = "delete from USER where id = ?";
+    
+    public static void deleteStay(int id) {
+        String query = "delete from Stays where GuestID = ?";
         try (Connection conn = DriverManager.getConnection(URL, USERNAME,
                 PASSWORD)) {
             PreparedStatement stmt = conn.prepareStatement(query);
-            stmt.setInt(1, u.getId());
+            stmt.setInt(1, id);
             stmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    */
+    
     /**
      * Edit given user details in the database
      *
@@ -177,17 +177,17 @@ public class Database {
     
     
     public static void updateBooking(Stays newStay, int id) {
-        String query = "UPDATE Stays SET Hotelname=?, FromDate=?, ToDate=?, Bill=?, Feedback=?, GuestEmail=? WHERE id=?";
+        String query = "UPDATE Stays SET Hotelname=?, FromDate=?, ToDate=?, Bill=?, Feedback=?, GuestEmail=? WHERE GuestID=?";
         try (Connection conn = DriverManager.getConnection(URL, USERNAME,
                 PASSWORD)) {
             PreparedStatement stmt = conn.prepareStatement(query);
-            stmt.setInt(1, id);
-            stmt.setString(2, newStay.getHotelName());
-            stmt.setString(3, newStay.getCheckInDate());
-            stmt.setString(4, newStay.getCheckOutDate());
-            stmt.setString(5, newStay.getPrice());
-            stmt.setString(6, newStay.getFeedback());
-            stmt.setString(7, newStay.getGuestEmail());
+            stmt.setString(1, newStay.getHotelName());
+            stmt.setString(2, newStay.getCheckInDate());
+            stmt.setString(3, newStay.getCheckOutDate());
+            stmt.setString(4, newStay.getPrice());
+            stmt.setString(5, newStay.getFeedback());
+            stmt.setString(6, newStay.getGuestEmail());
+            stmt.setInt(7, id);
             
             stmt.executeUpdate();
         } catch (SQLException e) {

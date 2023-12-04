@@ -6,11 +6,16 @@
             <file>file:/S:/INFO%20-%20Final%20Project/INFO%20-%20FINAL%20PROJECT/src/view/LoginPage.java</file>
             <file>file:/S:/INFO%20-%20Final%20Project/INFO%20-%20FINAL%20PROJECT/src/view/CreateProfile.java</file>
             <file>file:/S:/INFO%20-%20Final%20Project/INFO%20-%20FINAL%20PROJECT/src/controller/flowControl.java</file>
-            <file>file:/S:/INFO%20-%20Final%20Project/INFO%20-%20FINAL%20PROJECT/src/view/MainFrame.java</file>
             <file>file:/S:/INFO%20-%20Final%20Project/INFO%20-%20FINAL%20PROJECT/src/view/StaysView.java</file>
+            <file>file:/S:/INFO%20-%20Final%20Project/INFO%20-%20FINAL%20PROJECT/src/model/Stays.java</file>
+            <file>file:/S:/INFO%20-%20Final%20Project/INFO%20-%20FINAL%20PROJECT/src/view/CreateBooking.java</file>
+            <file>file:/S:/INFO%20-%20Final%20Project/INFO%20-%20FINAL%20PROJECT/src/model/Membership.java</file>
+            <file>file:/S:/INFO%20-%20Final%20Project/INFO%20-%20FINAL%20PROJECT/src/view/ProfileView.java</file>
+            <file>file:/S:/INFO%20-%20Final%20Project/INFO%20-%20FINAL%20PROJECT/src/view/MainFrame.java</file>
+            <file>file:/S:/INFO%20-%20Final%20Project/INFO%20-%20FINAL%20PROJECT/src/view/UpdateBooking.java</file>
+            <file>file:/S:/INFO%20-%20Final%20Project/INFO%20-%20FINAL%20PROJECT/src/model/Guest.java</file>
             <file>file:/S:/INFO%20-%20Final%20Project/INFO%20-%20FINAL%20PROJECT/src/view/AdminPage.java</file>
             <file>file:/S:/INFO%20-%20Final%20Project/INFO%20-%20FINAL%20PROJECT/src/view/MembershipView.java</file>
-            <file>file:/S:/INFO%20-%20Final%20Project/INFO%20-%20FINAL%20PROJECT/src/view/CreateBooking.java</file>
             <file>file:/S:/INFO%20-%20Final%20Project/INFO%20-%20FINAL%20PROJECT/src/model/Database.java</file>
         </group>
     </open-files>

@@ -25,6 +25,7 @@ public class MainFrame extends javax.swing.JFrame {
     
     StaysView stayV = new StaysView();
     DefaultTableModel globalModel = (DefaultTableModel) stayV.staysTable.getModel();
+    ArrayList<Stays> staysArray = new ArrayList<> ();
     
     MembershipView membershipV = new MembershipView();
     DefaultTableModel globalModelMembership = (DefaultTableModel) membershipV.membershipTable.getModel();
@@ -340,6 +341,7 @@ public class MainFrame extends javax.swing.JFrame {
                 row[5] = s.getFeedback();
 //                model.addRow(row);
                 globalModel.addRow(row);
+                
                 System.out.println(globalModel);
             }
 //            clearFields();

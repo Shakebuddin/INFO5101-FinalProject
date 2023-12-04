@@ -83,18 +83,6 @@ public class ProfileView extends javax.swing.JPanel {
 
         CountryLabel.setText("Country:");
 
-        emailDataLabel.setText("emailDataLabel");
-
-        phoneDataLabel.setText("PhoneDataLabel");
-
-        AL1DataLabel.setText("Address Label 1");
-
-        AL2DataLabel.setText("PhoneDataLabel");
-
-        cityDataLabel.setText("PhoneDataLabel");
-
-        countryDataLabel.setText("PhoneDataLabel");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -118,7 +106,7 @@ public class ProfileView extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(phoneDataLabel)
                             .addComponent(emailDataLabel))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 98, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 185, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(ALine1Label)
