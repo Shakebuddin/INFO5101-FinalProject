@@ -36,8 +36,8 @@ public class LoginPage extends javax.swing.JPanel {
         usernameLabel = new javax.swing.JLabel();
         passwordLabel = new javax.swing.JLabel();
         usernameInput = new javax.swing.JTextField();
-        passwordInput = new javax.swing.JTextField();
         loginButton = new javax.swing.JButton();
+        passwordInput = new javax.swing.JPasswordField();
 
         heading.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         heading.setText("Please Login to the System");
@@ -71,17 +71,17 @@ public class LoginPage extends javax.swing.JPanel {
                         .addGap(149, 149, 149)
                         .addComponent(heading))
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(267, 267, 267)
+                        .addComponent(loginButton))
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(187, 187, 187)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(usernameLabel)
                             .addComponent(passwordLabel))
                         .addGap(53, 53, 53)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(usernameInput)
-                            .addComponent(passwordInput, javax.swing.GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(267, 267, 267)
-                        .addComponent(loginButton)))
+                            .addComponent(passwordInput)
+                            .addComponent(usernameInput, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(147, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -112,7 +112,10 @@ public class LoginPage extends javax.swing.JPanel {
         final String USERNAME = "admin";
         final String PASSWORD = "password";
         String username = usernameInput.getText();
-        String password = passwordInput.getText();
+//        String password = passwordInput1.getText();
+        
+        char[] passwordChars = passwordInput.getPassword();
+                String password = new String(passwordChars);
         
         if(username.equals(USERNAME)){
             if(password.equals(PASSWORD)){
@@ -154,7 +157,7 @@ public class LoginPage extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel heading;
     private javax.swing.JButton loginButton;
-    private javax.swing.JTextField passwordInput;
+    private javax.swing.JPasswordField passwordInput;
     private javax.swing.JLabel passwordLabel;
     private javax.swing.JTextField usernameInput;
     private javax.swing.JLabel usernameLabel;

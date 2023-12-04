@@ -197,8 +197,15 @@ public int guestid;
 //            newUser.setAge(Integer.parseInt(ageField.getText()));
 //            newUser.setName(nameField.getText());
 //insert into db
+
+            System.out.println("DB hotel " + stayDetails.getHotelName());
+            System.out.println("DB hotel " + stayDetails.getCheckInDate());
+            System.out.println("DB hotel " + stayDetails.getCheckOutDate());
+            System.out.println("DB hotel " + stayDetails.getPrice());
+            System.out.println("DB hotel " + stayDetails.getFeedback());
+            
             Database.updateBooking(stayDetails, guestid);
-            JOptionPane.showMessageDialog(null, "User Edited Successfully", "Successful Edit", JOptionPane.PLAIN_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Stay Edited Successfully", "Successful Edit", JOptionPane.PLAIN_MESSAGE);
 //            clearFields();
 //            populateData();
         } catch (Exception e) {
@@ -216,8 +223,14 @@ public int guestid;
         frame.add(panel);
         frame.setSize(750,600);
         frame.setVisible(true);
+          
+        
     }//GEN-LAST:event_createBookingButtonActionPerformed
 
+    public void getId(String id){
+        
+        this.guestid = Integer.parseInt(id);
+    }
     private void clearForm(){
         hotelNameInput.setText("");
         checkInInput.setText("");

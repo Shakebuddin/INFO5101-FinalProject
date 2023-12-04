@@ -41,7 +41,7 @@
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace pref="98" max="32767" attributes="0"/>
+              <EmptySpace pref="185" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="ALine1Label" min="-2" max="-2" attributes="0"/>
@@ -158,49 +158,31 @@
       </AuxValues>
     </Component>
     <Component class="javax.swing.JLabel" name="emailDataLabel">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="emailDataLabel"/>
-      </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
       </AuxValues>
     </Component>
     <Component class="javax.swing.JLabel" name="phoneDataLabel">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="PhoneDataLabel"/>
-      </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
       </AuxValues>
     </Component>
     <Component class="javax.swing.JLabel" name="AL1DataLabel">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Address Label 1"/>
-      </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
       </AuxValues>
     </Component>
     <Component class="javax.swing.JLabel" name="AL2DataLabel">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="PhoneDataLabel"/>
-      </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
       </AuxValues>
     </Component>
     <Component class="javax.swing.JLabel" name="cityDataLabel">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="PhoneDataLabel"/>
-      </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
       </AuxValues>
     </Component>
     <Component class="javax.swing.JLabel" name="countryDataLabel">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="PhoneDataLabel"/>
-      </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
       </AuxValues>
